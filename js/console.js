@@ -28,7 +28,7 @@ const getResources = () => {
     resources.forEach(resource => {
       const resourceItem = document.createElement('li');
       resourceItem.className = "resource";
-      resourceItem.innerText = pp(resource);
+      resourceItem.innerText = JSON.stringify(resource);
       resourcesList.append(resourceItem);
     })
   })
