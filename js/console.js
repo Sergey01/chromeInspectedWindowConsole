@@ -18,17 +18,24 @@ submit.addEventListener('click', async (e) => {
 });
 
 // getResources functionality
-const resourcesDiv = document.getElementById('resources');
+const resourcesList = document.getElementById('resources');
 const refreshResources = document.getElementById('refreshResources');
 
+// main function for getting resources. Clears the resourcesList and 
+// fills in line items from a getResources call
+const getResources = () => {
+  chrome.devtools.inspectedWindow.getResources((resources) => {
+    resources.forEach(resource => {
+      const resourceItem = document.createElement('li');
+      resourceItem.className = "resource";
+      resourceItem.innerText = pp(resource);
+      resourcesList.append(resourceItem);
+    })
+  })
+};
+
 // initial resource list grab
-chrome.devtools.inspectedWindow.getResources((resources) => {
-  resourcesDiv.innerText = pp(resources);
-});
+getResources();
 
 // Refresh button functionality
-refreshResources.addEventListener('click', async (e) => {
-  chrome.devtools.inspectedWindow.getResources((resources) => {
-    resourcesDiv.innerText = pp(resources);
-  })
-});
+refreshResources.addEventListener('click', getResources);
