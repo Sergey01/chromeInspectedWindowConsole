@@ -42,10 +42,14 @@ const getResources = () => {
       const resourceItem = document.createElement('tr');
       const resourceType = document.createElement('td');
       const resourceURL = document.createElement('td');
+      
+      // setting styling class names
       resourceItem.className = 'resourceRow';
       resourceType.className = 'resourceType';
-      resourceType.innerText = resource.type;
       resourceURL.className = 'resourceURL';
+
+      // populating type and url cells
+      resourceType.innerText = resource.type;
       resourceURL.innerText = resource.url;
 
       // appending resource type and url to the row
