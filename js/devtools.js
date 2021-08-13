@@ -1,0 +1,1 @@
+chrome.devtools.panels.create('inspectWindow Console', null, '../html/panel.html', null);
