@@ -18,21 +18,31 @@ submit.addEventListener('click', async (e) => {
 });
 
 // getResources functionality
-const resourcesList = document.getElementById('resources');
+const resourcesTable = document.getElementById('resourcesTable');
+let resourcesBody = document.getElementById('resourcesBody');
 const refreshResources = document.getElementById('refreshResources');
 
-// main function for getting resources. Clears the resourcesList and 
+// main function for getting resources. Clears the resourcesTable tbody and 
 // fills in line items from a getResources call
 const getResources = () => {
-  resourcesList.innerHTML = ""; // clears the current list
+  resourcesBody.remove();
+  resourcesBody = document.createElement('tbody');
+  resourcesBody.id = "resourcesBody";
+  resourcesTable.append(resourcesBody);
   chrome.devtools.inspectedWindow.getResources((resources) => {
     resources.forEach(resource => {
-      const resourceItem = document.createElement('li');
-      resourceItem.className = "resource";
-      resourceItem.innerText = JSON.stringify(resource);
-      resourcesList.append(resourceItem);
-    })
-  })
+      const resourceItem = document.createElement('tr');
+      const resourceType = document.createElement('td');
+      const resourceURL = document.createElement('td');
+      resourceItem.className = "resourceRow";
+      resourceType.className = "resourceType";
+      resourceType.innerText = JSON.stringify(resource.type).slice(1,-1);
+      resourceURL.className = "resourceURL";
+      resourceURL.innerText = JSON.stringify(resource.url).slice(1,-1);
+      resourceItem.append(resourceType, resourceURL);
+      resourcesBody.append(resourceItem);
+    });
+  });
 };
 
 // initial resource list grab
