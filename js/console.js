@@ -24,6 +24,7 @@ const refreshResources = document.getElementById('refreshResources');
 // main function for getting resources. Clears the resourcesList and 
 // fills in line items from a getResources call
 const getResources = () => {
+  resourcesList.innerHTML = ""; // clears the current list
   chrome.devtools.inspectedWindow.getResources((resources) => {
     resources.forEach(resource => {
       const resourceItem = document.createElement('li');
