@@ -4,5 +4,8 @@
   "version": "0.0.1",
   "description": "Little MV3 Chrome extension meant to play around with chrome.devtools.inspectedWindow API",
   "author": "Sergey Zeygerman",
-  "devtools_page": "html/devtools.html"
+  "devtools_page": "html/devtools.html",
+  "permissions": [
+    "debugger"
+  ]
 }

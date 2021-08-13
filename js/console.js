@@ -31,7 +31,7 @@ const getResources = () => {
   // clear existing table body
   resourcesBody.remove();
   resourcesBody = document.createElement('tbody');
-  resourcesBody.id = "resourcesBody";
+  resourcesBody.id = 'resourcesBody';
   resourcesTable.append(resourcesBody);
 
   // fetch inspectedWindow resources
@@ -41,10 +41,10 @@ const getResources = () => {
       const resourceItem = document.createElement('tr');
       const resourceType = document.createElement('td');
       const resourceURL = document.createElement('td');
-      resourceItem.className = "resourceRow";
-      resourceType.className = "resourceType";
+      resourceItem.className = 'resourceRow';
+      resourceType.className = 'resourceType';
       resourceType.innerText = resource.type;
-      resourceURL.className = "resourceURL";
+      resourceURL.className = 'resourceURL';
       resourceURL.innerText = resource.url;
 
       // appending resource type and url to the row
@@ -61,3 +61,9 @@ getResources();
 
 // Refresh button functionality
 refreshResources.addEventListener('click', getResources);
+
+// debugger API test
+const debuggerDiv = document.createElement('div');
+debuggerDiv.id = 'debuggerDiv';
+document.querySelector('body').append(debuggerDiv);
+chrome.debugger.getTargets((targets) => debuggerDiv.innerText = pp(targets));
