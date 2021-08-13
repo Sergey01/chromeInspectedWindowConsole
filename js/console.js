@@ -2,7 +2,8 @@
 const pp = (stuff) => JSON.stringify(stuff, null, 2);
 
 // grab and display tabId
-document.getElementById('infoTabId').innerText = `TabID: ${chrome.devtools.inspectedWindow.tabId}`;
+const tabId = chrome.devtools.inspectedWindow.tabId;
+document.getElementById('infoTabId').innerText = `TabID: ${tabId}`;
 
 // "console" functionality
 const input = document.getElementById('commandInput');
@@ -65,5 +66,8 @@ refreshResources.addEventListener('click', getResources);
 // debugger API test
 const debuggerDiv = document.createElement('div');
 debuggerDiv.id = 'debuggerDiv';
-document.querySelector('body').append(debuggerDiv);
+const debuggerDiv2 = document.createElement('div');
+debuggerDiv2.id = 'debuggerDiv2';
+document.querySelector('body').append(debuggerDiv, debuggerDiv2);
 chrome.debugger.getTargets((targets) => debuggerDiv.innerText = pp(targets));
+chrome.debugger.attach({tabId: tabId}, '1.3', ()=> debuggerDiv2.innerText = `ATTACHED TO tabId: ${tabId}`);
