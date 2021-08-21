@@ -5,7 +5,12 @@
   <body>
     <div id="infoTabId"></div>
     <details id="inputContainer">
-      <summary>chrome.devtools.inspectedWindow console</summary>
+      <summary>chrome.devtools.inspectedWindow / Debugger console</summary>
+      <input type="radio" id="radioInspectedWindow" name="consoleType" value="inspectedWindow" checked>
+      <label for="radioInspectedWindow">inspectedWindow</label>
+      <input type="radio" id="radioDebugger" name="consoleType" value="Debugger">
+      <label for="radioDebugger">Debugger</label>
+      <br>
       <label for="commandInput">Input command:</label>
       <textarea id="commandInput"></textarea>
       <button id="inputSubmit">Submit</button>
