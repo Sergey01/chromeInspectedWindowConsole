@@ -27,9 +27,17 @@ submit.addEventListener('click', async (e) => {
   };
 
   if (consoleType.value == 'debugger') {
-    output.innerText = `${command} will be sent to the debugger once this code is finished`;
+    // output.innerText = `${command} will be sent to the debugger once this code is finished`;
+    const [method, commandParams] = command.split(' ');
+    chrome.debugger.sendCommand({tabId: tabId}, method, commandParams, (result) => {
+        if (result) {
+          output.innerText = pp(result);
+        }
+        if (runtime.lastError) {
+          output.innerText = `Error Code: ${runtime.lastError.code}\nError Message: ${runtime.lastError.message}`
+        }
+    })
   }
-
 });
 
 // getResources functionality
