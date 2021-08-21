@@ -86,3 +86,8 @@ debuggerDiv2.id = 'debuggerDiv2';
 document.getElementById('debuggerStuff').append(debuggerDiv, debuggerDiv2);
 chrome.debugger.getTargets((targets) => debuggerDiv.innerText = pp(targets));
 chrome.debugger.attach({tabId: tabId}, '1.3', ()=> debuggerDiv2.innerText = `ATTACHED TO tabId: ${tabId}`);
+chrome.debugger.onDetach.addListener((source, reason) => {
+  const detachString = `${pp(source)} has disconnected from the debugger session for the following reason: ${reason}`;
+  console.log(detachString);
+  alert(detachString);
+});
