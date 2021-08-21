@@ -4,11 +4,12 @@
   </head>
   <body>
     <div id="infoTabId"></div>
-    <div id="inputContainer">
+    <details id="inputContainer">
+      <summary>chrome.devtools.inspectedWindow console</summary>
       <label for="commandInput">Input command:</label>
       <textarea id="commandInput"></textarea>
       <button id="inputSubmit">Submit</button>
-    </div>
+    </details>
     <div id="outputContainer">
     </div>
     <details id="resourcesContainer">
@@ -22,6 +23,9 @@
         <tbody id="resourcesBody">
         </tbody>
       </table>
+    </details>
+    <details id="debuggerStuff">
+      <summary>Debugger Stuff (Experiments not Console)</summary>
     </details>
   </body>
 </html>

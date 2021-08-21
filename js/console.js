@@ -74,6 +74,6 @@ const debuggerDiv = document.createElement('div');
 debuggerDiv.id = 'debuggerDiv';
 const debuggerDiv2 = document.createElement('div');
 debuggerDiv2.id = 'debuggerDiv2';
-document.querySelector('body').append(debuggerDiv, debuggerDiv2);
+document.getElementById('debuggerStuff').append(debuggerDiv, debuggerDiv2);
 chrome.debugger.getTargets((targets) => debuggerDiv.innerText = pp(targets));
 chrome.debugger.attach({tabId: tabId}, '1.3', ()=> debuggerDiv2.innerText = `ATTACHED TO tabId: ${tabId}`);
