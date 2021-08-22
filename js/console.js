@@ -28,14 +28,16 @@ submit.addEventListener('click', async (e) => {
 
   if (consoleType.value == 'debugger') {
     // output.innerText = `${command} will be sent to the debugger once this code is finished`;
-    const [method, commandParams] = command.split(' ');
+    let [method, commandParams] = command.split(' ');
+    if (commandParams) commandParams = JSON.parse(commandParams);
     chrome.debugger.sendCommand({tabId: tabId}, method, commandParams, (result) => {
-        if (result) {
-          output.innerText = pp(result);
-        }
-        if (runtime.lastError) {
-          output.innerText = `Error Code: ${runtime.lastError.code}\nError Message: ${runtime.lastError.message}`
-        }
+      if (chrome.runtime.lastError) { 
+        output.innerText = `${chrome.runtime.lastError.message}`
+      }  
+      if (result) {
+          output.innerText = pp(result)
+      }
+       
     })
   }
 });
